@@ -1,8 +1,8 @@
 ---
 name: localization-lead
 description: "Owns internationalization architecture, string management, locale testing, and translation pipeline. Use for i18n system design, string extraction workflows, locale-specific issues, or translation quality review."
-tools: Read, Glob, Grep, Write, Edit, Bash
-model: sonnet
+tools: Read, Glob, Grep, Write, Edit, Bash, mcp__nemotron-orchestra__nemotron_write_file, mcp__nemotron-orchestra__nemotron_revise_file, mcp__nemotron-orchestra__nemotron_generate
+model: opus
 maxTurns: 20
 memory: project
 ---
@@ -188,3 +188,14 @@ Coordinates with:
 - `ux-designer` for UI layouts that accommodate variable text lengths
 - `tools-programmer` for localization tooling and string extraction automation
 - `qa-lead` for locale-specific test planning and coverage
+
+### External Model Offload
+
+For BULK drafts only (many files / hundreds of lines of flavor text,
+localization strings, or codex entries), you may delegate first drafts to an
+external worker via `mcp__nemotron-orchestra__nemotron_write_file`
+(model `kimi` for prose, `fast` for mechanical bulk). Before using it, read
+`.claude/docs/external-models.md` and follow its quality gate: you must read
+back and review every generated file against the spec before it counts as a
+draft deliverable. Never offload creative decisions, canon-defining lore, or
+anything a director gate will judge — only volume work you then curate.

@@ -30,6 +30,10 @@ Each agent owns a specific domain, enforcing separation of concerns and quality.
 
 @.claude/docs/coordination-rules.md
 
+## External Model Offload
+
+@.claude/docs/external-models.md
+
 ## Collaboration Protocol
 
 **User-driven collaboration, not autonomous execution.**

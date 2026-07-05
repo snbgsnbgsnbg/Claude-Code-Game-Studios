@@ -3,8 +3,7 @@ name: reverse-document
 description: "Generate design or architecture documents from existing implementation. Works backwards from code/prototypes to create missing planning docs."
 argument-hint: "<type> <path> (e.g., 'design src/gameplay/combat' or 'architecture src/core')"
 user-invocable: true
-allowed-tools: Read, Glob, Grep, Write, Edit, Bash
-model: sonnet
+allowed-tools: Read, Glob, Grep, Write, Edit, Bash, mcp__nemotron-orchestra__nemotron_write_file, mcp__nemotron-orchestra__nemotron_revise_file, mcp__nemotron-orchestra__nemotron_generate
 # Read-only diagnostic skill — no specialist agent delegation needed
 ---
 
@@ -261,3 +260,14 @@ This skill follows the collaborative design principle:
 8. **Flag Follow-Up**: Suggest related work, don't auto-execute
 
 **Never assume intent. Always ask before documenting "why".**
+
+---
+
+## External Model Offload (optional)
+
+When the volume is large (dozens of files / hundreds of strings), first drafts
+may be delegated to an external worker via
+`mcp__nemotron-orchestra__nemotron_write_file` — read
+`.claude/docs/external-models.md` first and follow its mandatory quality gate:
+every generated file is read back and reviewed against the spec before it
+counts. Use `kimi` for natural-language drafts, `fast` for mechanical bulk.

@@ -4,8 +4,7 @@ description: "Full localization pipeline: scan for hardcoded strings, extract an
 argument-hint: "[scan|extract|validate|status|brief|cultural-review|vo-pipeline|rtl-check|freeze|qa]"
 user-invocable: true
 agent: localization-lead
-allowed-tools: Read, Glob, Grep, Write, Bash, Task, AskUserQuestion
-model: sonnet
+allowed-tools: Read, Glob, Grep, Write, Bash, Task, AskUserQuestion, mcp__nemotron-orchestra__nemotron_write_file, mcp__nemotron-orchestra__nemotron_revise_file, mcp__nemotron-orchestra__nemotron_generate
 ---
 
 # Localization Pipeline
@@ -439,3 +438,14 @@ Ask: "May I write this localization QA report to `production/localization/loc-qa
 ```
 
 After `qa` returns PASS for all shipping locales, include the QA report path when running `/gate-check release`.
+
+---
+
+## External Model Offload (optional)
+
+When the volume is large (dozens of files / hundreds of strings), first drafts
+may be delegated to an external worker via
+`mcp__nemotron-orchestra__nemotron_write_file` — read
+`.claude/docs/external-models.md` first and follow its mandatory quality gate:
+every generated file is read back and reviewed against the spec before it
+counts. Use `kimi` for natural-language drafts, `fast` for mechanical bulk.

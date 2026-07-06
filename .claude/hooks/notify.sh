@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Notification hook — fires when Claude Code sends a notification
-# Shows a Windows toast via PowerShell
+# Cross-platform: macOS (osascript), Windows (PowerShell), Linux (notify-send)
 
 # Read notification JSON from stdin
 INPUT=$(cat)
@@ -16,20 +16,34 @@ if [ -z "$MESSAGE" ]; then
   MESSAGE="Claude Code needs your attention"
 fi
 
-# Sanitize message for PowerShell string embedding (escape single quotes)
-MESSAGE_SAFE=$(echo "$MESSAGE" | sed "s/'/''/g" | head -c 200)
+MESSAGE_TRIM=$(echo "$MESSAGE" | head -c 200)
 
-# Show Windows balloon tip notification (works on all Windows 10/11 without extra modules)
-powershell.exe -NonInteractive -WindowStyle Hidden -Command "
-  Add-Type -AssemblyName System.Windows.Forms
-  \$notify = New-Object System.Windows.Forms.NotifyIcon
-  \$notify.Icon = [System.Drawing.SystemIcons]::Information
-  \$notify.BalloonTipTitle = 'Claude Code'
-  \$notify.BalloonTipText = '$MESSAGE_SAFE'
-  \$notify.Visible = \$true
-  \$notify.ShowBalloonTip(5000)
-  Start-Sleep -Seconds 6
-  \$notify.Dispose()
-" 2>/dev/null &
+case "$(uname -s)" in
+  Darwin)
+    # macOS notification center; escape double quotes for AppleScript
+    MESSAGE_SAFE=$(echo "$MESSAGE_TRIM" | sed 's/\\/\\\\/g;s/"/\\"/g')
+    osascript -e "display notification \"$MESSAGE_SAFE\" with title \"Claude Code\"" 2>/dev/null &
+    ;;
+  Linux)
+    if command -v notify-send &>/dev/null; then
+      notify-send "Claude Code" "$MESSAGE_TRIM" 2>/dev/null &
+    fi
+    ;;
+  MINGW*|MSYS*|CYGWIN*)
+    # Windows balloon tip via PowerShell (works on Windows 10/11 without extra modules)
+    MESSAGE_SAFE=$(echo "$MESSAGE_TRIM" | sed "s/'/''/g")
+    powershell.exe -NonInteractive -WindowStyle Hidden -Command "
+      Add-Type -AssemblyName System.Windows.Forms
+      \$notify = New-Object System.Windows.Forms.NotifyIcon
+      \$notify.Icon = [System.Drawing.SystemIcons]::Information
+      \$notify.BalloonTipTitle = 'Claude Code'
+      \$notify.BalloonTipText = '$MESSAGE_SAFE'
+      \$notify.Visible = \$true
+      \$notify.ShowBalloonTip(5000)
+      Start-Sleep -Seconds 6
+      \$notify.Dispose()
+    " 2>/dev/null &
+    ;;
+esac
 
-echo "Notification: $MESSAGE_SAFE"
+echo "Notification: $MESSAGE_TRIM"

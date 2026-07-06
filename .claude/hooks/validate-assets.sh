@@ -3,8 +3,9 @@
 # Checks naming conventions for files in assets/ directory
 #
 # Exit behavior:
-#   exit 0 = success or advisory warnings only (non-blocking)
-#   exit 1 = blocking error (build-breaking issues: invalid JSON, missing required fields)
+#   exit 0 = success or advisory warnings only
+#   exit 2 = surface error to Claude (PostToolUse cannot undo the write, but exit 2
+#           feeds stderr back so Claude can follow up and fix the file)
 #
 # Input schema (PostToolUse for Write/Edit):
 # { "tool_name": "Write", "tool_input": { "file_path": "assets/data/foo.json", "content": "..." } }
@@ -28,7 +29,7 @@ fi
 
 FILENAME=$(basename "$FILE_PATH")
 WARNINGS=""   # Style/convention issues -- exit 0 with advisory message
-ERRORS=""     # Build-breaking issues -- exit 1 to block the operation
+ERRORS=""     # Build-breaking issues -- exit 2 to surface to Claude (write already happened)
 
 # ADVISORY: Check naming convention (lowercase with underscores only)
 # Naming issues are style violations -- warn but do not block
@@ -65,8 +66,8 @@ fi
 
 # Report errors and block if any build-breaking issues found
 if [ -n "$ERRORS" ]; then
-    echo -e "=== Asset Validation: ERRORS (Blocking) ===$ERRORS\n===========================================\nFix these errors before proceeding." >&2
-    exit 1
+    echo -e "=== Asset Validation: ERRORS ===$ERRORS\n===========================================\nThe file was already written — fix these errors in a follow-up edit." >&2
+    exit 2
 fi
 
 exit 0

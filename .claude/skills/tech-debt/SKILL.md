@@ -58,10 +58,9 @@ Then use `AskUserQuestion` to collect the **category**:
 - Prompt: "What category does this tech debt belong to?"
 - Options:
   - `[A] Architecture Debt — wrong abstractions, missing patterns, coupling issues`
-  - `[B] Code Quality Debt — duplication, complexity, naming, missing types`
+  - `[B] Code Quality & Performance Debt — duplication, complexity, naming, slow paths, memory`
   - `[C] Test Debt — missing tests, flaky tests, untested edge cases`
   - `[D] Docs or Dependency Debt — outdated docs/APIs, deprecated or conflicting packages`
-  - `[F] Performance Debt — known slow paths, memory issues, unoptimized queries`
 
 Then use `AskUserQuestion` to collect the **estimated fix effort**:
 - Prompt: "What is the estimated effort to fix this item?"

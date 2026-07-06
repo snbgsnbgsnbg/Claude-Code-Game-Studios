@@ -52,10 +52,10 @@ Present the inferred classification using `AskUserQuestion`:
   - `[B] Tweak — small behavioral change to an existing system`
   - `[C] Addition — adding a small mechanic to an existing system`
   - `[D] New Small System — standalone feature, under one week of work`
-  - `[F] This is too large — redirect me to /design-system`
 
-If [F]: stop. Verdict: **REDIRECTED** — use `/design-system` for this change.
-Otherwise: proceed with the selected type.
+(Four options — the AskUserQuestion cap. If the user's free-text reply indicates
+the change is bigger than a New Small System, stop with verdict **REDIRECTED** —
+use `/design-system` for this change.) Otherwise: proceed with the selected type.
 
 ---
 

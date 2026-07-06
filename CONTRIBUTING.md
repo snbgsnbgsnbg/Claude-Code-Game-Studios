@@ -28,9 +28,10 @@ These are the things that will get your PR rejected if you miss them.
 - Skills live in `.claude/skills/<name>/SKILL.md` — the subdirectory format is
   required. Flat `.md` files are silently ignored by Claude Code.
 - SKILL.md must include YAML frontmatter: `name`, `description`,
-  `argument-hint`, `allowed-tools`, and `model`
-- Model tier: `haiku` for read-only status checks, `opus` for multi-document
-  synthesis and phase gates, `sonnet` for everything else
+  `argument-hint`, and `allowed-tools`
+- `model` is optional: set `haiku` for read-only status/format skills, pin
+  `opus` for phase-gate verdicts, and omit it (inherit the session model) for
+  everything else — matching `.claude/docs/coordination-rules.md`
 
 **Hooks**
 - Use `grep -E` — never `grep -P` (Perl regex breaks on Windows Git Bash)

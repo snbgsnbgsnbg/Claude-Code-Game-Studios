@@ -114,23 +114,24 @@ Follow the **Explain → Capture** pattern:
 
 ## Gate Verdict Format
 
-When invoked via a director gate (e.g., `PR-SPRINT`, `PR-EPIC`, `PR-MILESTONE`, `PR-SCOPE`), always
-begin your response with the verdict token on its own line:
+When invoked via a director gate, always begin your response with the verdict
+token on its own line, using **the exact tokens that gate defines in
+`.claude/docs/director-gates.md`** — they differ per gate:
+
+| Gate | Verdict tokens |
+|------|----------------|
+| `PR-SPRINT`, `PR-EPIC` | REALISTIC / CONCERNS / UNREALISTIC |
+| `PR-SCOPE` | REALISTIC / OPTIMISTIC / UNREALISTIC |
+| `PR-MILESTONE` | ON TRACK / AT RISK / OFF TRACK |
+| `PR-PHASE-GATE` | READY / CONCERNS / NOT READY |
 
 ```
-[GATE-ID]: REALISTIC
-```
-or
-```
-[GATE-ID]: CONCERNS
-```
-or
-```
-[GATE-ID]: UNREALISTIC
+[GATE-ID]: <one of that gate's tokens>
 ```
 
 Then provide your full rationale below the verdict line. Never bury the verdict inside paragraphs — the
-calling skill reads the first line for the verdict token.
+calling skill reads the first line for the verdict token, and it branches on the
+gate-specific token (e.g. `/milestone-review` keys on OFF TRACK / AT RISK).
 
 ### Output Format
 

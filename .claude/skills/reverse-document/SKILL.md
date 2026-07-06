@@ -4,7 +4,7 @@ description: "Generate design or architecture documents from existing implementa
 argument-hint: "<type> <path> (e.g., 'design src/gameplay/combat' or 'architecture src/core')"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, mcp__nemotron-orchestra__nemotron_write_file, mcp__nemotron-orchestra__nemotron_revise_file, mcp__nemotron-orchestra__nemotron_generate
-# Read-only diagnostic skill — no specialist agent delegation needed
+# Generates design/architecture docs from existing code — no specialist agent delegation needed
 ---
 
 # Reverse Documentation
@@ -122,9 +122,9 @@ Based on type, use appropriate template:
 
 | Type | Template | Output Path |
 |------|----------|-------------|
-| `design` | `templates/design-doc-from-implementation.md` | `design/gdd/[system-name].md` |
-| `architecture` | `templates/architecture-doc-from-code.md` | `docs/architecture/[decision-name].md` |
-| `concept` | `templates/concept-doc-from-prototype.md` | `prototypes/[name]/CONCEPT.md` or `design/concepts/[name].md` |
+| `design` | `.claude/docs/templates/design-doc-from-implementation.md` | `design/gdd/[system-name].md` |
+| `architecture` | `.claude/docs/templates/architecture-doc-from-code.md` | `docs/architecture/[decision-name].md` |
+| `concept` | `.claude/docs/templates/concept-doc-from-prototype.md` | `prototypes/[name]/CONCEPT.md` or `design/concepts/[name].md` |
 
 **Draft structure**:
 - Capture **what exists** (mechanics, patterns, implementation)

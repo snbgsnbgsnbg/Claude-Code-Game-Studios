@@ -23,7 +23,7 @@ session model is changed:
 |------|----------------|-----|-----------|
 | **Directors & Leads** | `opus` (pinned) | creative-director, technical-director, producer + all 8 department leads | Gate verdicts and cross-system judgment stay on the strongest model regardless of session settings |
 | **Specialists** | `inherit` | all other agents | Follow the session model — Opus when you run Opus, cheaper if you deliberately downgrade the session |
-| **Mechanical skills** | `haiku` | `/help`, `/sprint-status`, `/story-readiness`, `/scope-check`, `/project-stage-detect`, `/changelog`, `/patch-notes`, `/onboard` | Read-and-format work; no judgment needed |
+| **Mechanical skills** | `haiku` | `/help`, `/sprint-status`, `/scope-check`, `/project-stage-detect`, `/changelog`, `/patch-notes`, `/onboard` | Read-and-format work; no judgment needed |
 | **Gate skills** | `opus` (pinned) | `/review-all-gdds`, `/architecture-review`, `/gate-check` | High-stakes verdicts |
 | **External workers** | Nemotron Orchestra MCP | bulk drafting only — see @external-models.md | Cheap draft labor; Claude reviews everything |
 

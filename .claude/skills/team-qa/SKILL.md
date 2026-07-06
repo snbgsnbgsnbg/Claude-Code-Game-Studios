@@ -83,7 +83,6 @@ options:
   - "Looks good — proceed to test plan"
   - "Adjust story types before proceeding"
   - "Skip blocked stories and proceed with the rest"
-  - "Smoke check failed — fix issues and re-run /team-qa"
   - "Cancel — resolve blockers first"
 ```
 

@@ -1,6 +1,16 @@
 # Path-Specific Rules
 
-Rules in `.claude/rules/` are automatically enforced when editing files in matching paths:
+> **How these are applied.** Claude Code does **not** auto-load path-scoped rule
+> files. These rules take effect through two mechanisms in this template:
+> (1) the path-scoped **agents** (gameplay-programmer, engine-programmer, etc.)
+> carry the relevant standards in their own prompts, and (2) skills like
+> `/code-review` and `/dev-story` read the matching rule file for the code under
+> review. To make a rule load automatically while editing a subtree, add a
+> directory-scoped `CLAUDE.md` there that `@`-imports it (e.g.
+> `src/gameplay/CLAUDE.md` containing `@../../.claude/rules/gameplay-code.md`) —
+> Claude Code loads a directory's `CLAUDE.md` on demand when you work in it.
+
+The rule files and the paths they govern:
 
 | Rule File | Path Pattern | Enforces |
 | ---- | ---- | ---- |

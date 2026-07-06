@@ -1,10 +1,9 @@
 ---
 name: architecture-review
 description: "Validates completeness and consistency of the project architecture against all GDDs. Builds a traceability matrix mapping every GDD technical requirement to ADRs, identifies coverage gaps, detects cross-ADR conflicts, verifies engine compatibility consistency across all decisions, and produces a PASS/CONCERNS/FAIL verdict. The architecture equivalent of /design-review."
-argument-hint: "[focus: full | coverage | consistency | engine | single-gdd path/to/gdd.md]"
+argument-hint: "[focus: full | coverage | consistency | engine | rtm | single-gdd path/to/gdd.md]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Task, AskUserQuestion
-agent: technical-director
 model: opus
 ---
 
@@ -610,8 +609,8 @@ After completing the review and writing approved files, present:
 2. **Pre-gate checklist**: Check whether these exist via Glob and mark each ✅ or ❌:
    - `tests/unit/` and `tests/integration/` directories — if ❌: run `/test-setup`
    - `.github/workflows/tests.yml` — if ❌: run `/test-setup`
-   - `design/accessibility-requirements.md` — if ❌: run `/ux-design`
-   - `design/ux/interaction-patterns.md` — if ❌: run `/ux-design`
+   - `design/accessibility-requirements.md` — if ❌: run `/ux-design accessibility`
+   - `design/ux/interaction-patterns.md` — if ❌: run `/ux-design patterns`
    Present ❌ items as required steps before gate-check. Do not offer `/gate-check`
    as an option if any item is ❌ — offer the missing skill to run instead.
 3. **Rerun trigger**: "Re-run `/architecture-review` after each new ADR is written
@@ -622,7 +621,7 @@ Then close with `AskUserQuestion` tailored to the pre-gate checklist state:
   - "Architecture review complete. What would you like to do next?"
     - [A] Write a missing ADR — open a fresh session and run `/architecture-decision [system]`
     - [B] Run `/test-setup` — required before gate-check (only show if test infrastructure is ❌)
-    - [C] Run `/ux-design` — required before gate-check (only show if UX/accessibility files are ❌)
+    - [C] Author the missing UX/accessibility file — `/ux-design patterns` or `/ux-design accessibility` (only show if those files are ❌)
     - [D] Stop here for this session
 - If all pre-gate checklist items are ✅ and no blocking ADR gaps remain:
   - "Architecture review complete. All pre-gate items confirmed. What would you like to do next?"

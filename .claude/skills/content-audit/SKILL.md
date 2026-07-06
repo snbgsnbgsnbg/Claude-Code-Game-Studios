@@ -4,8 +4,6 @@ description: "Audit GDD-specified content counts against implemented content. Id
 argument-hint: "[system-name | --summary | (no arg = full audit)]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write
-model: sonnet
-agent: producer
 ---
 
 When this skill is invoked:
@@ -45,7 +43,7 @@ Parse the argument:
    - "N quests" / "N missions" / "N objectives"
    - Any explicit enumerated list (bullet list of named content pieces)
 
-4. **Build a content inventory table** from the extracted data:
+5. **Build a content inventory table** from the extracted data:
 
    | System | Content Type | Specified Count/List | Source GDD |
    |--------|-------------|---------------------|------------|

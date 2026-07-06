@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "bash .claude/statusline.sh"
@@ -15,7 +16,10 @@
       "Bash(dir *)",
       "Bash(python -m json.tool*)",
       "Bash(python -m pytest*)",
-      "Bash(py -m pytest*)"
+      "Bash(py -m pytest*)",
+      "mcp__nemotron-orchestra__nemotron_models",
+      "mcp__nemotron-orchestra__nemotron_health",
+      "mcp__nemotron-orchestra__nemotron_generate"
     ],
     "deny": [
       "Bash(rm -rf *)",

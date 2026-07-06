@@ -4,7 +4,6 @@ description: "Track, categorize, and prioritize technical debt across the codeba
 argument-hint: "[scan|add|prioritize|report]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, AskUserQuestion
-model: sonnet
 ---
 
 ## Phase 1: Parse Subcommand
@@ -59,11 +58,9 @@ Then use `AskUserQuestion` to collect the **category**:
 - Prompt: "What category does this tech debt belong to?"
 - Options:
   - `[A] Architecture Debt — wrong abstractions, missing patterns, coupling issues`
-  - `[B] Code Quality Debt — duplication, complexity, naming, missing types`
+  - `[B] Code Quality & Performance Debt — duplication, complexity, naming, slow paths, memory`
   - `[C] Test Debt — missing tests, flaky tests, untested edge cases`
-  - `[D] Documentation Debt — missing/outdated docs, undocumented APIs`
-  - `[E] Dependency Debt — outdated packages, deprecated APIs, version conflicts`
-  - `[F] Performance Debt — known slow paths, memory issues, unoptimized queries`
+  - `[D] Docs or Dependency Debt — outdated docs/APIs, deprecated or conflicting packages`
 
 Then use `AskUserQuestion` to collect the **estimated fix effort**:
 - Prompt: "What is the estimated effort to fix this item?"

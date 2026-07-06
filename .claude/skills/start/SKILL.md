@@ -4,12 +4,11 @@ description: "First-time onboarding — asks where you are, then guides you to t
 argument-hint: "[no arguments]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, AskUserQuestion
-model: sonnet
 ---
 
 # Guided Onboarding
 
-This skill writes one file: `production/review-mode.txt` (review mode config set in Phase 3b).
+This skill writes two files: `production/stage.txt` (Phase 3c) and `production/review-mode.txt` (Phase 3b).
 
 This skill is the entry point for new users. It does NOT assume you have a game idea, an engine preference, or any prior experience. It asks first, then routes you to the right workflow.
 

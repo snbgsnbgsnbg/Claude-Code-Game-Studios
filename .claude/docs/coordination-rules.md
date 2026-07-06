@@ -14,22 +14,26 @@
 
 ## Model Tier Assignment
 
-Skills and agents are assigned to model tiers based on task complexity:
+The studio is built to run with **Opus as the main session model** (pinned via
+`"model": "opus"` in `.claude/settings.json`, currently `claude-opus-4-8`).
+Agents and skills are tiered so quality-critical roles stay on Opus even if the
+session model is changed:
 
-| Tier | Model | When to use |
-|------|-------|-------------|
-| **Haiku** | `claude-haiku-4-5-20251001` | Read-only status checks, formatting, simple lookups — no creative judgment needed |
-| **Sonnet** | `claude-sonnet-4-6` | Implementation, design authoring, analysis of individual systems — default for most work |
-| **Opus** | `claude-opus-4-6` | Multi-document synthesis, high-stakes phase gate verdicts, cross-system holistic review |
+| Tier | `model:` value | Who | Rationale |
+|------|----------------|-----|-----------|
+| **Directors & Leads** | `opus` (pinned) | creative-director, technical-director, producer + all 8 department leads | Gate verdicts and cross-system judgment stay on the strongest model regardless of session settings |
+| **Specialists** | `inherit` | all other agents | Follow the session model — Opus when you run Opus, cheaper if you deliberately downgrade the session |
+| **Mechanical skills** | `haiku` | `/help`, `/sprint-status`, `/scope-check`, `/project-stage-detect`, `/changelog`, `/patch-notes`, `/onboard` | Read-and-format work; no judgment needed |
+| **Gate skills** | `opus` (pinned) | `/review-all-gdds`, `/architecture-review`, `/gate-check` | High-stakes verdicts |
+| **External workers** | Nemotron Orchestra MCP | bulk drafting only — see @external-models.md | Cheap draft labor; Claude reviews everything |
 
-Skills with `model: haiku`: `/help`, `/sprint-status`, `/story-readiness`, `/scope-check`,
-`/project-stage-detect`, `/changelog`, `/patch-notes`, `/onboard`
+All other skills carry no `model:` field and inherit the session model. When
+creating new skills: assign `haiku` if the skill only reads and formats; pin
+`opus` only for phase-gate verdicts; otherwise leave unset.
 
-Skills with `model: opus`: `/review-all-gdds`, `/architecture-review`, `/gate-check`
-
-All other skills default to Sonnet. When creating new skills, assign Haiku if the
-skill only reads and formats; assign Opus if it must synthesize 5+ documents with
-high-stakes output; otherwise leave unset (Sonnet).
+Bulk generation (lore drafts, localization passes, boilerplate, reverse-docs)
+can be offloaded to external models — rules and quality gate in
+`.claude/docs/external-models.md`.
 
 ## Subagents vs Agent Teams
 

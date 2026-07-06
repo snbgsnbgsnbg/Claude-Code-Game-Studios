@@ -3,15 +3,17 @@ name: help
 description: "Analyzes what is done and the users query and offers advice on what to do next. Use if user says what should I do next or what do I do now or I'm stuck or I don't know what to do"
 argument-hint: "[optional: what you just finished, e.g. 'finished design-review' or 'stuck on ADRs']"
 user-invocable: true
-allowed-tools: Read, Glob, Grep
-context: |
-  !echo "=== Live Project State ===" && echo "Stage: $(cat production/stage.txt 2>/dev/null | tr -d '[:space:]' || echo 'not set')" && echo "Latest sprint: $(ls -t production/sprints/*.md 2>/dev/null | head -1 || echo 'none')" && echo "Session state: $(head -5 production/session-state/active.md 2>/dev/null || echo 'none')"
+allowed-tools: Read, Glob, Grep, Bash
 model: haiku
 ---
 
 # Studio Help — What Do I Do Next?
 
 This skill is read-only — it reports findings but writes no files.
+
+## Live Project State
+
+!`echo "Stage: $(cat production/stage.txt 2>/dev/null | tr -d '[:space:]' || echo 'not set')"; echo "Latest sprint: $(ls -t production/sprints/*.md 2>/dev/null | head -1 || echo 'none')"; echo "Session state: $(head -5 production/session-state/active.md 2>/dev/null || echo 'none')"`
 
 This skill figures out exactly where you are in the game development pipeline and
 tells you what comes next. It is **lightweight** — not a full audit. For a full
@@ -66,7 +68,7 @@ Check in this order:
 
 2. **If stage.txt is missing**, infer phase from artifacts (most-advanced match wins):
    - `src/` has 10+ source files → `production`
-   - `production/stories/*.md` exists → `pre-production`
+   - `production/epics/*/story-*.md` exists → `pre-production`
    - `docs/architecture/adr-*.md` exists → `technical-setup`
    - `design/gdd/systems-index.md` exists → `systems-design`
    - `design/gdd/game-concept.md` exists → `concept`

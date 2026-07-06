@@ -1,10 +1,9 @@
 ---
 name: asset-spec
 description: "Generate per-asset visual specifications and AI generation prompts from GDDs, level docs, or character profiles. Produces structured spec files and updates the master asset manifest. Run after art bible and GDD/level design are approved, before production begins."
-argument-hint: "[system:<name> | level:<name> | character:<name>] [--review full|lean|solo]"
+argument-hint: "[system:<name> | level:<name> | character:<name> | entity:<name>] [--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Task, AskUserQuestion
-model: sonnet
 ---
 
 If no argument is provided, check whether `design/assets/entity-inventory.md` exists:
@@ -287,11 +286,9 @@ Ask: "May I update `design/assets/asset-manifest.md`?"
 Use `AskUserQuestion`:
 - Prompt: "Asset specs complete for **[target]**. What's next?"
 - Options:
-  - `[A] Spec another system — /asset-spec system:[next-system]`
-  - `[B] Spec a level — /asset-spec level:[level-name]`
-  - `[C] Spec a character — /asset-spec character:[character-name]`
-  - `[D] Run /asset-audit — validate delivered assets against specs`
-  - `[E] Stop here`
+  - `[A] Spec another target — /asset-spec system:|level:|character:[name]`
+  - `[B] Run /asset-audit — validate delivered assets against specs`
+  - `[C] Stop here`
 
 ---
 

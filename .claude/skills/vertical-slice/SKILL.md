@@ -4,9 +4,6 @@ description: "Pre-Production validation — build a production-quality end-to-en
 argument-hint: "[--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, AskUserQuestion
-model: sonnet
-agent: prototyper
-isolation: worktree
 ---
 
 ## Purpose
@@ -226,7 +223,7 @@ skip it. It feeds directly into sprint planning.
 Read `.claude/docs/templates/vertical-slice-report.md` to get the report structure.
 If the template file is not found, use this fallback structure:
 - `## Vertical Slice Report — [Game Title] — [Date]`
-- `### Executive Summary` (PROCEED / PIVOT / STOP verdict + 2-sentence rationale)
+- `### Executive Summary` (PROCEED / PIVOT / KILL verdict + 2-sentence rationale)
 - `### Core Loop Validation` (what was tested, what passed, what failed)
 - `### Feel Assessment` (animation, controls, feedback — subjective notes)
 - `### Technical Findings` (performance, engine issues, architectural risks)
@@ -242,7 +239,6 @@ text with real observations.
 - What assumptions were broken by actually building to near-production quality?
 - What surprised us about the pipeline or architecture?
 - What would we change about the slice scope if we ran this again?
-```
 
 Ask: "May I write this report to
 `prototypes/[concept-name]-vertical-slice/REPORT.md`?"

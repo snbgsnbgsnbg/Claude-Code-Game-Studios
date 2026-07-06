@@ -9,11 +9,11 @@ input=$(cat)
 # --- Parse JSON (jq with grep fallback) ---
 if command -v jq &>/dev/null; then
   model=$(echo "$input" | jq -r '.model.display_name // "Unknown"')
-  used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+  used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty' | cut -d. -f1)
   cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // ""')
 else
   model=$(echo "$input" | grep -oE '"display_name"\s*:\s*"[^"]*"' | head -1 | sed 's/.*: *"//;s/"//')
-  used_pct=$(echo "$input" | grep -oE '"used_percentage"\s*:\s*[0-9]+' | head -1 | sed 's/.*: *//')
+  used_pct=$(echo "$input" | grep -oE '"used_percentage"[[:space:]]*:[[:space:]]*[0-9.]+' | head -1 | sed 's/.*: *//' | cut -d. -f1)
   cwd=$(echo "$input" | grep -oE '"current_dir"\s*:\s*"[^"]*"' | head -1 | sed 's/.*: *"//;s/"//')
   [ -z "$model" ] && model="Unknown"
 fi

@@ -4,8 +4,6 @@ description: "Orchestrate the QA team through a full testing cycle. Coordinates 
 argument-hint: "[sprint | feature: system-name] [--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Task, AskUserQuestion
-model: sonnet
-agent: qa-lead
 ---
 
 When this skill is invoked, orchestrate the QA team through a structured testing cycle.
@@ -85,7 +83,6 @@ options:
   - "Looks good — proceed to test plan"
   - "Adjust story types before proceeding"
   - "Skip blocked stories and proceed with the rest"
-  - "Smoke check failed — fix issues and re-run /team-qa"
   - "Cancel — resolve blockers first"
 ```
 

@@ -4,7 +4,6 @@ description: "Detect non-deterministic (flaky) tests by reading CI run logs or t
 argument-hint: "[ci-log-path | scan | registry]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash
-model: sonnet
 ---
 
 # Test Flakiness Detection
@@ -129,7 +128,7 @@ For each flaky test:
 
 **Quarantine (High flakiness):**
 > "Quarantine this test immediately. Disable it in CI by adding
-> `@pytest.mark.skip` / `[Ignore]` / `GdUnitSkip` annotation. Log it in
+> `GdUnitSkip` (Godot) / `[Ignore]` (Unity) / `EAutomationTestFlags` exclusion (Unreal) annotation. Log it in
 > `tests/regression-suite.md` quarantine section. The test is now opt-in only.
 > Fix the root cause before removing quarantine."
 

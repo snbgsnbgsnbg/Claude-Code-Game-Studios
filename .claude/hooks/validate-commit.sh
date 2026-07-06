@@ -34,7 +34,7 @@ if [ -n "$DESIGN_FILES" ]; then
     while IFS= read -r file; do
         if [[ "$file" == *.md ]] && [ -f "$file" ]; then
             for section in "Overview" "Player Fantasy" "Detailed" "Formulas" "Edge Cases" "Dependencies" "Tuning Knobs" "Acceptance Criteria"; do
-                if ! grep -qi "$section" "$file"; then
+                if ! grep -qiE "^#+ +$section" "$file"; then
                     WARNINGS="$WARNINGS\nDESIGN: $file missing required section: $section"
                 fi
             done

@@ -4,7 +4,6 @@ description: "Map test coverage to GDD critical paths, identify fixed bugs witho
 argument-hint: "[update | audit | report]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, AskUserQuestion
-model: sonnet
 ---
 
 # Regression Suite
@@ -22,7 +21,7 @@ and known failure points. This skill maintains that list.
 
 **When to run:**
 - After fixing a bug (confirm a regression test was written or identify gap)
-- Before a release gate (`/gate-check polish` requires regression suite exists)
+- Before a release gate (recommended — `/gate-check polish` does not hard-require it, but a missing regression suite is a release risk)
 - As part of sprint close to detect coverage drift
 
 ---

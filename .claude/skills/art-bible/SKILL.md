@@ -4,7 +4,6 @@ description: "Guided, section-by-section Art Bible authoring. Creates the visual
 argument-hint: "[--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Task, AskUserQuestion
-model: sonnet
 ---
 
 ## Phase 0: Parse Arguments and Context Check
@@ -192,7 +191,7 @@ Write the approved section to file.
 - `lean` → skip (not a PHASE-GATE). Note: "AD-ART-BIBLE skipped — Lean mode." Proceed to Phase 6.
 - `full` → spawn as normal.
 
-After all sections are complete (or the scoped set from Phase 1 is complete), spawn `creative-director` via Task using gate **AD-ART-BIBLE** (`.claude/docs/director-gates.md`).
+After all sections are complete (or the scoped set from Phase 1 is complete), spawn `art-director` via Task using gate **AD-ART-BIBLE** (`.claude/docs/director-gates.md`).
 
 Pass: art bible file path, game pillars, visual identity anchor.
 

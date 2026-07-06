@@ -3,8 +3,8 @@ name: launch-checklist
 description: "Complete launch readiness validation covering every department: code, content, store, marketing, community, infrastructure, legal, and go/no-go sign-offs."
 argument-hint: "[launch-date or 'dry-run']"
 user-invocable: true
+disable-model-invocation: true
 allowed-tools: Read, Glob, Grep, Write
-model: sonnet
 ---
 
 > **Explicit invocation only**: This skill should only run when the user explicitly requests it with `/launch-checklist`. Do not auto-invoke based on context matching.

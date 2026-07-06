@@ -4,7 +4,6 @@ description: "Decompose a game concept into individual systems, map dependencies
 argument-hint: "[next | system-name] [--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, AskUserQuestion, TodoWrite, Task
-model: sonnet
 ---
 
 When this skill is invoked:
@@ -198,7 +197,7 @@ Pure technical necessity ("X depends on Y") is insufficient alone when the syste
 
 Pass: total system count per milestone tier, estimated implementation volume per tier (system count × average complexity), team size, stated project timeline.
 
-Present the assessment. If UNREALISTIC, offer to revise priority tier assignments before writing the index. If CONCERNS, note them and continue.
+Present the assessment. If UNREALISTIC, offer to revise priority tier assignments before writing the index. If OPTIMISTIC, note the risks and continue.
 
 ### Step 4c: Determine Design Order
 
@@ -361,4 +360,4 @@ If context reaches or exceeds 70% at any point, append this notice:
 - Run `/design-system [first-system-in-order]` to author the first GDD (use design order from the index)
 - Run `/map-systems next` to always pick the highest-priority undesigned system automatically
 - Run `/design-review design/gdd/[system].md` in a fresh session after each GDD is authored
-- Run `/gate-check pre-production` when all MVP GDDs are authored and reviewed
+- Run `/gate-check systems-design` when all MVP GDDs are authored and reviewed

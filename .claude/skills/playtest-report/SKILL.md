@@ -4,7 +4,6 @@ description: "Generates a structured playtest report template or analyzes existi
 argument-hint: "[new|analyze path-to-notes] [--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Task, AskUserQuestion
-model: sonnet
 ---
 
 ## Phase 1: Parse Arguments
@@ -132,7 +131,7 @@ Present the creative director's assessment before saving the report. If CONCERNS
 
 ## Phase 4: Save Report
 
-Ask: "May I write this playtest report to `production/qa/playtests/playtest-[date]-[tester].md`?"
+Ask: "May I write this playtest report to `production/playtests/playtest-[date]-[tester].md`?"
 
 If yes, write the file, creating the directory if needed.
 

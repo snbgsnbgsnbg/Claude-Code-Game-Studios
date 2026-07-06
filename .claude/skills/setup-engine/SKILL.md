@@ -4,7 +4,6 @@ description: "Configure the project's game engine and version. Pins the engine i
 argument-hint: "[engine] | [engine version] | refresh | upgrade [old-version] [new-version] | no args for guided selection"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, WebSearch, WebFetch, Task, AskUserQuestion
-model: sonnet
 ---
 
 When this skill is invoked:
@@ -37,7 +36,7 @@ If no engine is specified, run an interactive engine selection process:
 
 **Question 1 — Prior experience** (ask this first, always, via `AskUserQuestion`):
 - Prompt: "Have you worked in any of these engines before?"
-- Options: `Godot` / `Unity` / `Unreal Engine 5` / `Multiple — I'll explain` / `None of them`
+- Options: `Godot` / `Unity` / `Unreal Engine 5` / `Multiple or none — I'll explain`
 - If they pick a specific engine → recommend that engine. Prior experience outweighs all other factors. Confirm with them and skip the matrix.
 - If "None" or "Multiple" → continue to the questions below.
 
@@ -45,7 +44,7 @@ If no engine is specified, run an interactive engine selection process:
 
 **Question 2 — Target platform** (ask this second, always, via `AskUserQuestion` — platform eliminates or heavily weights engines before any other factor):
 - Prompt: "What platforms are you targeting for this game?"
-- Options: `PC (Steam / Epic)` / `Mobile (iOS / Android)` / `Console` / `Web / Browser` / `Multiple platforms`
+- Options: `PC (Steam / Epic)` / `Mobile (iOS / Android)` / `Console` / `Web / Browser` *(pick the primary; note others in free text)*
 - Platform rules that feed directly into the recommendation:
   - Mobile → Unity strongly preferred; Unreal is a poor fit; Godot is viable for simple mobile
   - Console → Unity or Unreal; Godot console support requires third-party publishers or significant extra work
@@ -101,7 +100,7 @@ Do NOT use a simple scoring matrix that eliminates engines. Instead, reason thro
 3. Name the best alternative and when to choose it instead
 4. Explicitly state: "This is a starting point, not a verdict — you can always migrate engines, and many developers switch between projects."
 5. Use `AskUserQuestion` to confirm: "Does this recommendation feel right, or would you like to explore a different engine?"
-   - Options: `[Primary engine] (Recommended)` / `[Alternative engine]` / `[Third engine]` / `Explore further` / `Type something`
+   - Options: `[Primary engine] (Recommended)` / `[Alternative engine]` / `[Third engine]` / `Explore further`
 
 **If the user picks "Explore further":**
 Use `AskUserQuestion` with concept-specific deep-dive topics. Always generate these options from the user's actual concept — do not use generic options. Always include at minimum:

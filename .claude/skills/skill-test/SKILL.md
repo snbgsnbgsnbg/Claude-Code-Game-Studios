@@ -1,10 +1,9 @@
 ---
 name: skill-test
-description: "Validate skill files for structural compliance and behavioral correctness. Three modes: static (linter), spec (behavioral), audit (coverage report)."
+description: "Validate skill files for structural compliance and behavioral correctness. Four modes: static (linter), spec (behavioral), category (per-category audit), audit (full coverage report)."
 argument-hint: "static [skill-name | all] | spec [skill-name] | category [skill-name | all] | audit"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write
-model: sonnet
 ---
 
 # Skill Test
@@ -308,8 +307,8 @@ For each agent in catalog's `agents:` section:
 === Skill Test Coverage Audit ===
 Date: [date]
 
-SKILLS (72 total)
-Specs written: 72 (100%) | Never static tested: 72 | Never category tested: 72
+SKILLS (N total)
+Specs written: N (100%) | Never static tested: N | Never category tested: N
 
 Skill                  | Cat      | Has Spec | Last Static | S.Result | Last Cat | C.Result | Priority
 -----------------------|----------|----------|-------------|----------|----------|----------|----------
@@ -329,7 +328,7 @@ technical-director     | director   | YES      | never       | —
 Top 5 Priority Gaps (skills with no spec, critical/high priority):
 (none if all specs are written)
 
-Skill coverage:  72/72 specs (100%)
+Skill coverage:  N/N specs (100%)
 Agent coverage:  49/49 specs (100%)
 ```
 

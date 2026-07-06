@@ -4,7 +4,6 @@ description: "Scan all GDDs against the entity registry to detect cross-document
 argument-hint: "[full | since-last-review | entity:<name> | item:<name>]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, AskUserQuestion
-model: sonnet
 ---
 
 # Consistency Check
@@ -272,7 +271,10 @@ If `docs/consistency-failures.md` does not exist, create it with this header bef
 |------|-------|-------|---------------|--------|
 ```
 
-Then append the new conflict entries. Never skip logging — a missing file is not a reason to lose conflict history.
+Then append each new conflict as one table row matching the header columns
+(`| [date] | [GDD A] | [GDD B] | [conflict type] | Open |`) — do not use heading
+blocks, so the table stays valid. Never skip logging — a missing file is not a
+reason to lose conflict history.
 
 ---
 
@@ -281,7 +283,7 @@ Then append the new conflict entries. Never skip logging — a missing file is n
 Silently append to `production/session-state/active.md` (create the file if it does not exist):
 
 ```
-<!-- CONSISTENCY-CHECK: [date] | GDDs checked: [N] | Conflicts found: [N] | Report: docs/consistency-report-[date].md -->
+<!-- CONSISTENCY-CHECK: [date] | GDDs checked: [N] | Conflicts found: [N] -->
 ```
 
 Then close with an `AskUserQuestion` widget:

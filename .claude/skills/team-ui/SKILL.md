@@ -4,7 +4,6 @@ description: "Orchestrate the UI team through the full UX pipeline: from UX spec
 argument-hint: "[UI feature description] [--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, AskUserQuestion, TodoWrite
-model: sonnet
 ---
 When this skill is invoked, orchestrate the UI team through a structured pipeline.
 
@@ -61,7 +60,7 @@ Before designing anything, read and synthesize:
 - `design/player-journey.md` — player's state and context when they reach this screen
 - All GDD UI Requirements sections relevant to this feature
 - `design/ux/interaction-patterns.md` — existing patterns to reuse (not reinvent)
-- `design/accessibility-requirements.md` — committed accessibility tier (e.g., Basic, Enhanced, Full)
+- `design/accessibility-requirements.md` — committed accessibility tier (e.g., Basic, Standard, Comprehensive, Exemplary)
 
 **If `design/ux/interaction-patterns.md` does not exist**, surface the gap immediately:
 > "interaction-patterns.md does not exist — no existing patterns to reuse."

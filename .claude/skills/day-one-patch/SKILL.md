@@ -4,7 +4,6 @@ description: "Prepare a day-one patch for a game launch. Scopes, prioritises, im
 argument-hint: "[scope: known-bugs | cert-feedback | all]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, Bash, Task, AskUserQuestion
-model: sonnet
 ---
 
 # Day-One Patch
@@ -125,7 +124,7 @@ Spawn `qa-lead` via Task with:
 Ask qa-lead to determine: **Is a targeted smoke check sufficient, or do any fixes touch systems that require a broader regression?**
 
 Run the required QA scope:
-- **Targeted smoke check** — run `/smoke-check [affected-systems]`
+- **Targeted smoke check** — run `/smoke-check quick` (note the affected systems in the surrounding instructions)
 - **Broader regression** — run targeted tests in `tests/unit/` and `tests/integration/` for affected systems
 
 QA verdict must be PASS or PASS WITH WARNINGS before proceeding. If FAIL: scope the failing fix out of the day-one patch and defer to 1.1.

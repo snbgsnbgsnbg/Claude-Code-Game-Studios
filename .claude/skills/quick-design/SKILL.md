@@ -4,7 +4,6 @@ description: "Lightweight design spec for small changes — tuning adjustments, 
 argument-hint: "[brief description of the change]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, AskUserQuestion
-model: sonnet
 ---
 
 # Quick Design
@@ -49,15 +48,14 @@ If there is no argument, ask the user to describe the change (plain text prompt)
 Present the inferred classification using `AskUserQuestion`:
 - Prompt: "I've classified this as **[inferred type]** — [brief reason]. Is that correct?"
 - Options:
-  - `[A] Yes — [inferred type] is correct`
-  - `[B] Tuning — changing numbers or balance values only`
-  - `[C] Tweak — small behavioral change to an existing system`
-  - `[D] Addition — adding a small mechanic to an existing system`
-  - `[E] New Small System — standalone feature, under one week of work`
-  - `[F] This is too large — redirect me to /design-system`
+  - `[A] Tuning — changing numbers or balance values only`
+  - `[B] Tweak — small behavioral change to an existing system`
+  - `[C] Addition — adding a small mechanic to an existing system`
+  - `[D] New Small System — standalone feature, under one week of work`
 
-If [F]: stop. Verdict: **REDIRECTED** — use `/design-system` for this change.
-Otherwise: proceed with the selected type.
+(Four options — the AskUserQuestion cap. If the user's free-text reply indicates
+the change is bigger than a New Small System, stop with verdict **REDIRECTED** —
+use `/design-system` for this change.) Otherwise: proceed with the selected type.
 
 ---
 

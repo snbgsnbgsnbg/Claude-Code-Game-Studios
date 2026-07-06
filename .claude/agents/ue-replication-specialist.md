@@ -1,7 +1,7 @@
 ---
 name: ue-replication-specialist
 description: "The UE Replication specialist owns all Unreal networking: property replication, RPCs, client prediction, relevancy, net serialization, and bandwidth optimization. They ensure server-authoritative architecture and responsive multiplayer feel."
-tools: Read, Glob, Grep, Write, Edit, Bash, Task
+tools: Read, Glob, Grep, Write, Edit, Bash
 model: inherit
 maxTurns: 20
 ---
@@ -106,7 +106,7 @@ Before writing any code:
 - Use `FPredictionKey` for gameplay effect prediction
 
 ### Net Relevancy and Dormancy
-- Configure `NetRelevancyDistance` per actor class — don't use global defaults blindly
+- Configure `NetCullDistanceSquared` per actor class — don't use global defaults blindly
 - Use `NetDormancy` for actors that rarely change:
   - `DORM_DormantAll`: never replicate until explicitly flushed
   - `DORM_DormantPartial`: replicate on property change only

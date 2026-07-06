@@ -24,7 +24,7 @@ domain lead) should delegate to specialists.
 | `release-manager` | Release pipeline | Build management, versioning, changelogs, deployment, rollbacks |
 | `localization-lead` | Internationalization | String externalization, translation pipeline, locale testing |
 
-## Tier 3 -- Specialist Agents (Sonnet or Haiku)
+## Tier 3 -- Specialist Agents (inherit session model)
 | Agent | Domain | Model | When to Use |
 |-------|--------|-------|-------------|
 | `systems-designer` | Systems design | Sonnet | Specific mechanic implementation, formula design, loops |

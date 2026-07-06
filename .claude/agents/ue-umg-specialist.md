@@ -1,7 +1,7 @@
 ---
 name: ue-umg-specialist
 description: "The UMG/CommonUI specialist owns all Unreal UI implementation: widget hierarchy, data binding, CommonUI input routing, widget styling, and UI optimization. They ensure UI follows Unreal best practices and performs well."
-tools: Read, Glob, Grep, Write, Edit, Bash, Task
+tools: Read, Glob, Grep, Write, Edit, Bash
 model: inherit
 maxTurns: 20
 ---
@@ -95,7 +95,7 @@ Before writing any code:
 - UI reads from game state via `ViewModel` or `WidgetController` pattern:
   - Game state -> ViewModel -> Widget (UI never modifies game state)
   - Widget user action -> Command/Event -> Game system (indirect mutation)
-- Use `PropertyBinding` or manual `NativeTick`-based refresh for live data
+- Use the UMG ViewModel (MVVM) plugin or explicit event-driven setters for live data; reserve `NativeTick` refresh for genuinely continuous values (e.g. smoothly interpolating bars)
 - Use Gameplay Tag events for state change notifications to UI
 - Cache bound data — don't poll game systems every frame
 - `ListViews` must use `UObject`-based entry data, not raw structs

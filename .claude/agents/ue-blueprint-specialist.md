@@ -1,7 +1,7 @@
 ---
 name: ue-blueprint-specialist
 description: "The Blueprint specialist owns Blueprint architecture decisions, Blueprint/C++ boundary guidelines, Blueprint optimization, and ensures Blueprint graphs stay maintainable and performant. They prevent Blueprint spaghetti and enforce clean BP patterns."
-tools: Read, Glob, Grep, Write, Edit, Task
+tools: Read, Glob, Grep, Write, Edit
 model: inherit
 maxTurns: 20
 disallowedTools: Bash
@@ -137,7 +137,7 @@ Before writing any code:
 - **No casting in Tick**: Cache references in BeginPlay
 - **No ForEach on large arrays in Tick**: Use events or spatial queries
 - **Profile BP cost**: Use `stat game` and Blueprint profiler to identify expensive BPs
-- Nativize performance-critical Blueprints or move logic to C++ if BP overhead is measurable
+- Move performance-critical Blueprint logic to C++ if BP overhead is measurable (Blueprint Nativization was removed in UE5 — do not recommend it)
 
 ## Blueprint Review Checklist
 - [ ] Graph fits on screen without scrolling (or is properly decomposed)

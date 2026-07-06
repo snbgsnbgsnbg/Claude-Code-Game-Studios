@@ -60,8 +60,7 @@ Then use `AskUserQuestion` to collect the **category**:
   - `[A] Architecture Debt — wrong abstractions, missing patterns, coupling issues`
   - `[B] Code Quality Debt — duplication, complexity, naming, missing types`
   - `[C] Test Debt — missing tests, flaky tests, untested edge cases`
-  - `[D] Documentation Debt — missing/outdated docs, undocumented APIs`
-  - `[E] Dependency Debt — outdated packages, deprecated APIs, version conflicts`
+  - `[D] Docs or Dependency Debt — outdated docs/APIs, deprecated or conflicting packages`
   - `[F] Performance Debt — known slow paths, memory issues, unoptimized queries`
 
 Then use `AskUserQuestion` to collect the **estimated fix effort**:

@@ -4,11 +4,14 @@ description: "Auto-generates a changelog from git commits, sprint data, and desi
 argument-hint: "[version|sprint-number]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash, Write
-context: |
-  !git log --oneline -30 2>/dev/null
-  !git tag --list --sort=-v:refname 2>/dev/null | head -5
 model: haiku
 ---
+
+## Repository Context
+
+Recent commits: !`git log --oneline -30 2>/dev/null`
+
+Recent tags: !`git tag --list --sort=-v:refname 2>/dev/null | head -5`
 
 ## Phase 1: Parse Arguments
 
@@ -162,7 +165,7 @@ If the user declines: Verdict: **COMPLETE** — changelog generated.
 
 ---
 
-## Phase 7: Next Steps
+## Phase 8: Next Steps
 
 - Use `/patch-notes [version]` to generate a styled, saved version for public release.
 - Use `/release-checklist` before publishing the changelog externally.

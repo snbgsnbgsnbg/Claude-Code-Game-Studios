@@ -1,7 +1,7 @@
 ---
 name: ue-gas-specialist
 description: "The Gameplay Ability System specialist owns all GAS implementation: abilities, gameplay effects, attribute sets, gameplay tags, ability tasks, and GAS prediction. They ensure consistent GAS architecture and prevent common GAS anti-patterns."
-tools: Read, Glob, Grep, Write, Edit, Bash, Task
+tools: Read, Glob, Grep, Write, Edit, Bash
 model: inherit
 maxTurns: 20
 ---
@@ -118,8 +118,8 @@ Before writing any code:
 - Attribute changes from GEs replicate automatically — don't double-replicate
 - Use `AbilitySystemComponent` replication mode appropriate to the game:
   - `Full`: every client sees every ability (small player counts)
-  - `Mixed`: owning client gets full, others get minimal (recommended for most games)
-  - `Minimal`: only owning client gets info (maximum bandwidth savings)
+  - `Mixed`: Gameplay Effects replicate to the owning client only; tags and cues replicate to everyone (recommended for player-controlled actors in multiplayer)
+  - `Minimal`: Gameplay Effects replicate to no client; only tags and cues multicast (for AI/NPC actors — maximum bandwidth savings)
 
 ### Common GAS Anti-Patterns to Flag
 - Modifying attributes directly instead of through Gameplay Effects

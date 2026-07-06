@@ -3,8 +3,7 @@ name: propagate-design-change
 description: "When a GDD is revised, scans all ADRs and the traceability index to identify which architectural decisions are now potentially stale. Produces a change impact report and guides the user through resolution."
 argument-hint: "[path/to/changed-gdd.md]"
 user-invocable: true
-allowed-tools: Read, Glob, Grep, Write, Bash, Task
-agent: technical-director
+allowed-tools: Read, Glob, Grep, Write, Bash, Task, AskUserQuestion
 ---
 
 # Propagate Design Change
@@ -36,11 +35,17 @@ Read the current GDD in full.
 
 ## 3. Read the Previous Version
 
-Run git to get the previous committed version:
+Get the previous version. First determine whether the revision is still uncommitted:
 
 ```bash
-git show HEAD:design/gdd/[filename].md
+git diff --quiet HEAD -- design/gdd/[filename].md && echo COMMITTED || echo UNCOMMITTED
 ```
+
+- **UNCOMMITTED** (working tree differs from HEAD): `git show HEAD:design/gdd/[filename].md`
+  is the pre-change version.
+- **COMMITTED** (the change is already committed): HEAD now holds the *revised* version.
+  Ask the user which commit/range predates the change (e.g. `HEAD~1`), then
+  `git show <ref>:design/gdd/[filename].md`.
 
 If the file has no git history (new file), report:
 > "No previous version in git — this appears to be a new GDD, not a revision.

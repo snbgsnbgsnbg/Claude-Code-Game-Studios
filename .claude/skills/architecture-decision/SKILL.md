@@ -199,9 +199,11 @@ Status: Proposed
 [A] Proceed — draft with these assumptions
 [B] Change the alternatives list
 [C] Adjust the GDD linkage
-[D] Add a performance budget constraint
-[E] Something else needs changing first
+[D] Something else first (e.g. add a performance budget constraint)
 ```
+
+(`AskUserQuestion` allows at most 4 options — describe any other change via [D]'s
+free-text escape.)
 
 Do not generate the ADR until the user confirms assumptions or provides corrections.
 
@@ -371,7 +373,7 @@ developers reading the GDD from implementing the wrong interface.
 
 If no inconsistencies: skip this block silently.
 
-5. **Write approval** — Use `AskUserQuestion`:
+5.8. **Write approval** — Use `AskUserQuestion`:
 
 If GDD sync issues were found:
 - "ADR draft is complete. How would you like to proceed?"
@@ -387,7 +389,7 @@ If no GDD sync issues:
 If yes to any write option, write the file, creating the directory if needed.
 For option [A] with GDD update: also update the GDD file(s) to use the new names.
 
-6. **Update Architecture Registry**
+5.9. **Update Architecture Registry**
 
 Scan the written ADR for new architectural stances that should be registered:
 - State it claims ownership of
@@ -408,7 +410,7 @@ Registry candidates from this ADR:
 
 **Registry append logic**: When writing to `docs/registry/architecture.yaml`, do NOT assume sections are empty. The file may already have entries from previous ADRs written in this session. Before each Edit call:
 1. Read the current state of `docs/registry/architecture.yaml`
-2. Find the correct section (state_ownership, interfaces, forbidden_patterns, api_decisions)
+2. Find the correct section (state_ownership, interfaces, forbidden_patterns, api_decisions, performance_budgets)
 3. Append the new entry AFTER the last existing entry in that section — do not try to replace a `[]` placeholder that may no longer exist
 4. If the section has entries already, use the closing content of the last entry as the `old_string` anchor, and append the new entry after it
 

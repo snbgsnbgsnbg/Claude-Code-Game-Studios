@@ -117,11 +117,14 @@ AskUserQuestion(
     "Concept 1 — [Title]",
     "Concept 2 — [Title]",
     "Concept 3 — [Title]",
-    "Combine elements across concepts",
-    "Generate fresh directions"
+    "Combine elements / fresh directions"
   ]
 )
 ```
+
+`AskUserQuestion` allows at most 4 options per question — the fourth option
+above covers both "combine" and "start over" (the user can type specifics via
+the built-in free-text escape).
 
 Do NOT use a `tabs` field here. The `tabs` form is for multi-field input only — using it here causes an "Invalid tool parameters" error. This is a plain `prompt` + `options` call.
 

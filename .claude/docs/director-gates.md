@@ -389,6 +389,48 @@ or before finalizing any engine-specific implementation approach
 
 ---
 
+### TD-CHANGE-IMPACT — Design Change Architecture Impact Review
+
+**Trigger**: In `/propagate-design-change`, after a revised GDD's impact on existing
+ADRs and the traceability index has been mapped
+
+**Context to pass**:
+- The revised GDD section (before/after, or the diff)
+- The list of ADRs and systems flagged as potentially stale
+- The traceability index entries affected
+
+**Prompt**:
+> "Review this design change against the flagged architecture decisions. Which
+> ADRs are genuinely invalidated vs. merely touched? Does the change introduce
+> new cross-system dependencies or violate an existing Accepted ADR? Return
+> APPROVE (no architecture rework needed), CONCERNS [ADRs to revisit], or
+> REJECT [change breaks a foundational decision — describe the conflict]."
+
+**Verdicts**: APPROVE / CONCERNS / REJECT
+
+---
+
+### TD-MANIFEST — Control Manifest Sign-Off
+
+**Trigger**: In `/create-control-manifest`, after the flat rules sheet is drafted
+from Accepted ADRs, technical preferences, and engine reference docs
+
+**Context to pass**:
+- The drafted control manifest
+- The source ADRs and technical-preferences entries it was extracted from
+- Engine version reference
+
+**Prompt**:
+> "Review this control manifest against its source ADRs and technical preferences.
+> Is every rule traceable to an Accepted decision? Are there contradictions between
+> rules, or gaps where an Accepted ADR imposes a constraint the manifest omits? Are
+> the engine-specific rules valid for the pinned version? Return APPROVE, CONCERNS
+> [gaps/contradictions to fix], or REJECT [manifest misrepresents the architecture]."
+
+**Verdicts**: APPROVE / CONCERNS / REJECT
+
+---
+
 ### TD-PHASE-GATE — Technical Readiness at Phase Transition
 
 **Trigger**: Always at `/gate-check` — spawn in parallel with CD-PHASE-GATE and PR-PHASE-GATE

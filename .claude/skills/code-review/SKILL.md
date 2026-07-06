@@ -4,7 +4,6 @@ description: "Performs an architectural and quality code review on a specified f
 argument-hint: "[path-to-file-or-directory]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Bash, Task, AskUserQuestion
-agent: lead-programmer
 ---
 
 ## Phase 1: Load Target Files
@@ -169,12 +168,12 @@ This skill is read-only — no files are written.
 ## Phase 9: Next Steps
 
 Use `AskUserQuestion`:
-- Prompt: "Code review complete — verdict: [APPROVED / CHANGES REQUIRED / MAJOR REVISION]. How would you like to proceed?"
+- Prompt: "Code review complete — verdict: [APPROVED / APPROVED WITH SUGGESTIONS / CHANGES REQUIRED]. How would you like to proceed?"
 - Options (adjust based on verdict):
-  - If APPROVED:
+  - If APPROVED or APPROVED WITH SUGGESTIONS:
     - `[A] Run /story-done to mark the story complete`
     - `[B] Stop here`
-  - If CHANGES REQUIRED or MAJOR REVISION:
+  - If CHANGES REQUIRED:
     - `[A] Fix the issues and re-run /code-review`
     - `[B] Run /story-done anyway with noted exceptions`
     - `[C] Stop here`

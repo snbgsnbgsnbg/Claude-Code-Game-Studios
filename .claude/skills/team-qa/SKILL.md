@@ -4,7 +4,6 @@ description: "Orchestrate the QA team through a full testing cycle. Coordinates 
 argument-hint: "[sprint | feature: system-name] [--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Task, AskUserQuestion
-agent: qa-lead
 ---
 
 When this skill is invoked, orchestrate the QA team through a structured testing cycle.

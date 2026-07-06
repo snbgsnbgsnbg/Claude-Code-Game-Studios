@@ -4,7 +4,6 @@ description: "Break a single epic into implementable story files. Reads the epic
 argument-hint: "[epic-slug | epic-path] [--review full|lean|solo]"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Task, AskUserQuestion
-agent: lead-programmer
 ---
 
 # Create Stories
@@ -105,8 +104,8 @@ For each story, determine:
 ## 4b. QA Lead Story Readiness Gate
 
 **Review mode check** — apply before spawning QL-STORY-READY:
-- `solo` → skip. Note: "QL-STORY-READY skipped — Solo mode." Proceed to Step 5 (present stories for review).
-- `lean` → skip (not a PHASE-GATE). Note: "QL-STORY-READY skipped — Lean mode." Proceed to Step 5 (present stories for review).
+- `solo` → skip the QL-STORY-READY gate spawn. Note: "QL-STORY-READY skipped — Solo mode." **Still complete test-spec generation below** (generate specs inline instead of spawning qa-lead), then proceed to Step 5.
+- `lean` → skip the QL-STORY-READY gate spawn (not a PHASE-GATE). Note: "QL-STORY-READY skipped — Lean mode." **Still complete test-spec generation below** (generate specs inline instead of spawning qa-lead), then proceed to Step 5.
 - `full` → spawn as normal.
 
 After decomposing all stories (Step 4 complete) but before presenting them for write approval, spawn `qa-lead` via Task using gate **QL-STORY-READY** (`.claude/docs/director-gates.md`).

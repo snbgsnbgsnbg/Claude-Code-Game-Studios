@@ -609,7 +609,7 @@ After completing the review and writing approved files, present:
 2. **Pre-gate checklist**: Check whether these exist via Glob and mark each ✅ or ❌:
    - `tests/unit/` and `tests/integration/` directories — if ❌: run `/test-setup`
    - `.github/workflows/tests.yml` — if ❌: run `/test-setup`
-   - `design/accessibility-requirements.md` — if ❌: author from `.claude/docs/templates/accessibility-requirements.md`
+   - `design/accessibility-requirements.md` — if ❌: run `/ux-design accessibility`
    - `design/ux/interaction-patterns.md` — if ❌: run `/ux-design patterns`
    Present ❌ items as required steps before gate-check. Do not offer `/gate-check`
    as an option if any item is ❌ — offer the missing skill to run instead.
@@ -621,7 +621,7 @@ Then close with `AskUserQuestion` tailored to the pre-gate checklist state:
   - "Architecture review complete. What would you like to do next?"
     - [A] Write a missing ADR — open a fresh session and run `/architecture-decision [system]`
     - [B] Run `/test-setup` — required before gate-check (only show if test infrastructure is ❌)
-    - [C] Author the missing UX/accessibility file — `/ux-design patterns` for interaction patterns, or the accessibility-requirements template (only show if those files are ❌)
+    - [C] Author the missing UX/accessibility file — `/ux-design patterns` or `/ux-design accessibility` (only show if those files are ❌)
     - [D] Stop here for this session
 - If all pre-gate checklist items are ✅ and no blocking ADR gaps remain:
   - "Architecture review complete. All pre-gate items confirmed. What would you like to do next?"

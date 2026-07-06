@@ -1,7 +1,7 @@
 ---
 name: ux-design
 description: "Guided, section-by-section UX spec authoring for a screen, flow, or HUD. Reads game concept, player journey, and relevant GDDs to provide context-aware design guidance. Produces ux-spec.md (per screen/flow) or hud-design.md using the studio templates."
-argument-hint: "[screen/flow name] or 'hud' or 'patterns'"
+argument-hint: "[screen/flow name] or 'hud' or 'patterns' or 'accessibility'"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, AskUserQuestion, Task
 ---
@@ -16,6 +16,7 @@ Three authoring modes exist based on the argument:
 |----------|------|-------------|
 | `hud` | HUD design | `design/ux/hud.md` |
 | `patterns` | Interaction pattern library | `design/ux/interaction-patterns.md` |
+| `accessibility` | Project accessibility requirements | `design/accessibility-requirements.md` |
 | Any other value (e.g., `main-menu`, `inventory`) | UX spec for a screen or flow | `design/ux/[argument].md` |
 | No argument | Ask the user | (see below) |
 
@@ -25,6 +26,15 @@ Three authoring modes exist based on the argument:
 
 If the user selects "I'll name it" or types a screen name, normalize it to kebab-case
 for the filename (e.g., "Main Menu" becomes `main-menu`).
+
+**Accessibility mode** (`/ux-design accessibility`) authors the project-wide
+`design/accessibility-requirements.md` from
+`.claude/docs/templates/accessibility-requirements.md`. It is the file that
+`/gate-check`, `/architecture-review`, and `/ux-review` expect to exist. In this
+mode, skip the per-screen context reads (2b–2f) — the relevant context is the
+game's platforms, input methods, and target audience. Use the accessibility
+skeleton below, then author the Tier Definition first (it gates the rest), then
+each category section (Visual, Motor, Cognitive, Auditory, Platform API).
 
 ---
 
@@ -286,6 +296,9 @@ Ask: "May I create the skeleton file at `design/ux/[filename].md`?"
 
 ### Skeleton for HUD Design
 
+> This skeleton mirrors `.claude/docs/templates/hud-design.md` and covers every
+> section `/ux-review` Phase 3B checks for, so a HUD authored here passes review.
+
 ```markdown
 # HUD Design
 
@@ -296,55 +309,88 @@ Ask: "May I create the skeleton file at `design/ux/[filename].md`?"
 
 ---
 
-## HUD Philosophy
+## 1. HUD Philosophy
 
 [To be designed]
 
 ---
 
-## Information Architecture
+## 2. Information Architecture
 
 ### Full Information Inventory
 
-[To be designed]
+[Every information item from all GDDs with UI requirements — to be designed]
 
 ### Categorization
 
-[To be designed]
+[Always-visible / contextual / on-demand / hidden — to be designed]
 
 ---
 
-## Layout Zones
+## 3. Layout Zones
 
-[To be designed]
-
----
-
-## HUD Elements
-
-[To be designed]
+[Zone diagram + zone specification table, with safe-zone margins per target
+platform — to be designed]
 
 ---
 
-## Dynamic Behaviors
+## 4. HUD Element Specifications
 
-[To be designed]
-
----
-
-## Platform & Input Variants
-
-[To be designed]
+[Element overview table + a detail block per element: zone, visibility trigger,
+data source, priority — to be designed]
 
 ---
 
-## Accessibility
+## 5. HUD States by Gameplay Context
 
-[To be designed]
+[At minimum: exploration, combat, dialogue/cutscene, paused — to be designed]
 
 ---
 
-## Open Questions
+## 6. Information Hierarchy
+
+[What draws the eye first/second/third; contrast and motion budget — to be designed]
+
+---
+
+## 7. Visual Budget
+
+[Max simultaneous elements and max % of screen covered — to be designed]
+
+---
+
+## 8. Feedback & Notification Systems
+
+[Toasts/banners/callouts with queue and priority behavior — to be designed]
+
+---
+
+## 9. Platform Adaptation
+
+[Per target platform: layout, input, safe zones — to be designed]
+
+---
+
+## 10. Accessibility — HUD Specific
+
+[Colorblind modes, text scaling, motion sensitivity, subtitles, HUD opacity/
+visibility controls — to be designed]
+
+---
+
+## 11. Tuning Knobs
+
+[Player-adjustable HUD values — to be designed]
+
+---
+
+## 12. Acceptance Criteria
+
+[Testable conditions the HUD must satisfy — to be designed]
+
+---
+
+## 13. Open Questions
 
 [To be designed]
 ```
@@ -384,6 +430,86 @@ Ask: "May I create the skeleton file at `design/ux/[filename].md`?"
 ## Gaps & Patterns Needed
 
 [To be designed]
+
+---
+
+## Open Questions
+
+[To be designed]
+```
+
+---
+
+### Skeleton for Accessibility Requirements
+
+> Used in `accessibility` mode. Mirrors
+> `.claude/docs/templates/accessibility-requirements.md`. Author the Tier
+> Definition first — it sets the compliance bar the category sections must meet.
+
+```markdown
+# Accessibility Requirements: [Game Title]
+
+> **Status**: In Design
+> **Author**: [user + ux-designer / accessibility-specialist]
+> **Last Updated**: [today's date]
+> **Template**: Accessibility Requirements
+
+---
+
+## Accessibility Tier Definition
+
+[Tier definitions (Basic / Standard / Comprehensive / Exemplary) and this
+project's committed tier + rationale — to be designed]
+
+---
+
+## Visual Accessibility
+
+[Colorblind support, text size/scaling, contrast, HUD scaling, plus a
+Color-as-Only-Indicator audit — to be designed]
+
+---
+
+## Motor Accessibility
+
+[Remapping, hold-vs-toggle, input timing/assist, difficulty options — to be designed]
+
+---
+
+## Cognitive Accessibility
+
+[Tutorials, reminders, objective markers, pacing/complexity options — to be designed]
+
+---
+
+## Auditory Accessibility
+
+[Subtitles, captions, visual cues for gameplay-critical SFX, plus a
+Gameplay-Critical SFX audit — to be designed]
+
+---
+
+## Platform Accessibility API Integration
+
+[Per platform: screen reader / OS accessibility API hooks — to be designed]
+
+---
+
+## Per-Feature Accessibility Matrix
+
+[Feature × accessibility-need coverage grid — to be designed]
+
+---
+
+## Accessibility Test Plan
+
+[How each requirement is verified — to be designed]
+
+---
+
+## Known Intentional Limitations
+
+[Requirements deliberately not met, with rationale — to be designed]
 
 ---
 
